@@ -5,6 +5,7 @@ id = 0
 linesx = []
 linesy = []
 tiles = []
+idplace = 0
 
 def gamefield(amount):
     global id, lines
@@ -55,14 +56,13 @@ def clickedtile(mouse_pos):
         else:
             reseter += 1
         id += 0.5
-        print(lst)
     x = closest(lst,pos.x)
     y = closest(lst,pos.y)
     #print("X: " + str(x) + " Y: " + str(y))
     return p.Vector2(x,y)
 
 def placeTile(tile_pos, number):
-    global tiles
+    global tiles, idplace
     rect = p.Rect((tile_pos[0] * 50) +25, (tile_pos[1] * 50) +25,50,50)
     color = (255,255,255,255)
     match number:
@@ -81,8 +81,19 @@ def placeTile(tile_pos, number):
             return
     if number < 1:
         return
-    tiles.append([rect, color])
+    tiles.append([rect, color, idplace])
+    idplace += 1
     print("Tile Placed")
+
+def deleteTile(tile_pos):
+    global tiles
+    idtile = 0
+    position = p.Rect((tile_pos[0] * 50) +25, (tile_pos[1] * 50) +25,50,50)
+    for tile in tiles:
+        if tile[0] == position:
+            del tiles[idtile]
+            print("Tile erfolgreich gelöscht")
+        idtile += 1
 
 def rendertiles(screen):
     global tiles

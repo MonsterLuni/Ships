@@ -38,8 +38,12 @@ def game(running):
                     else:
                         rightclickactive, collide = m.rightClickMenuAction(number)
                 if  mouse[1]:
-                    print("MIDDLE")
-                    rightclickactive = False
+                        print("MIDDLE")
+                        rightclickactive = False
+                        mouse_pos = p.mouse.get_pos()
+                        tile_pos_del = map.clickedtile(mouse_pos)
+                        print(tile_pos_del)
+                        map.deleteTile(tile_pos_del)
                 if  mouse[2]:
                     print("RIGHT")
                     rightclickactive = True
