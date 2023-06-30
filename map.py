@@ -95,6 +95,10 @@ def deleteTile(tile_pos):
             print("Tile erfolgreich gelöscht")
         idtile += 1
 
+def deleteAll():
+    global tiles
+    tiles.clear()
+
 def rendertiles(screen):
     global tiles
     for tile in tiles:

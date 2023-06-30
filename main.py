@@ -25,6 +25,8 @@ def game(running):
             if event.type == p.KEYDOWN:
                 if keys[p.K_ESCAPE]:
                     running = False
+                if keys[p.K_DELETE]:
+                    map.deleteAll()
             mouse = p.mouse.get_pressed(5)
             if event.type == p.MOUSEBUTTONDOWN:
                 if  mouse[0]:
@@ -48,13 +50,13 @@ def game(running):
                     print("RIGHT")
                     rightclickactive = True
                     mouse_pos = p.mouse.get_pos()
-                    collide, number = m.rightClickMenu(screen, mouse_pos, 5, True)
+                    collide, number = m.rightClickMenu(screen, mouse_pos, 6, True)
         if not map_generated:
             map_generated = map.gamefield(9)
         map.rendermap(screen)
         map.rendertiles(screen)
         if rightclickactive:
-            collide, number = m.rightClickMenu(screen, mouse_pos, 5, False)
+            collide, number = m.rightClickMenu(screen, mouse_pos, 6, False)
         p.display.flip()
 
 game(True)
