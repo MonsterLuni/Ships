@@ -36,7 +36,7 @@ def game(running):
                         print(tile_pos)
                         map.placeTile(tile_pos)
                     else:
-                        rightclickactive = m.rightClickMenuAction(number)
+                        rightclickactive, collide = m.rightClickMenuAction(number)
                 if  mouse[1]:
                     print("MIDDLE")
                     rightclickactive = False

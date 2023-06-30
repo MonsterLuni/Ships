@@ -70,4 +70,3 @@ def rendertiles(screen):
     global tiles
     for tile in tiles:
         p.draw.rect(screen, "green", tile[0])
-

@@ -35,5 +35,5 @@ def rightClickMenu(screen, mouse_pos, amount, new):
 
 def rightClickMenuAction(number):
     print("AUF NUMMER: " + str(number) + " Gedrückt")
-    return False
+    return False, False
     
