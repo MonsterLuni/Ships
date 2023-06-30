@@ -31,6 +31,10 @@ def game(running):
                     if not collide:
                         print("LEFT")
                         rightclickactive = False
+                        mouse_pos = p.mouse.get_pos()
+                        tile_pos = map.clickedtile(mouse_pos)
+                        print(tile_pos)
+                        map.placeTile(tile_pos)
                     else:
                         rightclickactive = m.rightClickMenuAction(number)
                 if  mouse[1]:
@@ -42,8 +46,9 @@ def game(running):
                     mouse_pos = p.mouse.get_pos()
                     collide, number = m.rightClickMenu(screen, mouse_pos, 5, True)
         if not map_generated:
-            map_generated = map.gamefield(screen, 10)
+            map_generated = map.gamefield(9)
         map.rendermap(screen)
+        map.rendertiles(screen)
         if rightclickactive:
             collide, number = m.rightClickMenu(screen, mouse_pos, 5, False)
         p.display.flip()
