@@ -60,13 +60,30 @@ def clickedtile(mouse_pos):
     #print("X: " + str(x) + " Y: " + str(y))
     return p.Vector2(x,y)
 
-def placeTile(tile_pos):
+def placeTile(tile_pos, number):
     global tiles
     rect = p.Rect((tile_pos[0] * 50) +25, (tile_pos[1] * 50) +25,50,50)
-    tiles.append([rect])
+    color = (255,255,255,255)
+    match number:
+        case 1:
+            color = (255,0,0,255)
+        case 2:
+            color = (0,255,0,255)
+        case 3:
+            color = (0,0,255,255)
+        case 4:
+            color = (255,255,0,255)
+        case 5:
+            color = (255,0,255,255)
+    for tile in tiles:
+        if rect == tile[0]:
+            return
+    if number < 1:
+        return
+    tiles.append([rect, color])
     print("Tile Placed")
 
 def rendertiles(screen):
     global tiles
     for tile in tiles:
-        p.draw.rect(screen, "green", tile[0])
+        p.draw.rect(screen, tile[1], tile[0])

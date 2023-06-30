@@ -34,7 +34,7 @@ def game(running):
                         mouse_pos = p.mouse.get_pos()
                         tile_pos = map.clickedtile(mouse_pos)
                         print(tile_pos)
-                        map.placeTile(tile_pos)
+                        map.placeTile(tile_pos, number)
                     else:
                         rightclickactive, collide = m.rightClickMenuAction(number)
                 if  mouse[1]:
