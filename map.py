@@ -47,7 +47,7 @@ def clickedtile(mouse_pos):
     reseter = 1
     pos = p.Vector2((mouse_pos[0]-50)/50,(mouse_pos[1]-50)/50)
     lst = []
-    while id <= lines:
+    while id < lines - 1:
         lst.append([id])
         if reseter == 1:
             lst.pop(len(lst)-1)
@@ -55,6 +55,7 @@ def clickedtile(mouse_pos):
         else:
             reseter += 1
         id += 0.5
+        print(lst)
     x = closest(lst,pos.x)
     y = closest(lst,pos.y)
     #print("X: " + str(x) + " Y: " + str(y))
