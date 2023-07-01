@@ -35,7 +35,6 @@ def game(running):
                     mouse_pos = p.mouse.get_pos()
                     collide, number = m.rightClickMenu(screen, mouse_pos, 6, True)
             if event.type == p.KEYDOWN or any(mouse):
-                print("AKTION")
                 screen.fill((0,0,0,255))
                 if  mouse[0]:
                     if not collide:
@@ -55,10 +54,14 @@ def game(running):
                         print(tile_pos_del)
                         map.deleteTile(tile_pos_del)
                 map.rendermap(screen)
-                map.rendertiles(screen)
+                tiles = map.rendertiles(screen)
+                u.renderfont(screen, tiles)
+                print("Screen Updated")
         if not map_generated:
             map_generated = map.gamefield(9)
             map.rendermap(screen)
+            tiles = map.rendertiles(screen)
+            u.renderfont(screen, tiles)
         if rightclickactive:
             collide, number = m.rightClickMenu(screen, mouse_pos, 6, False)
         p.display.flip()
