@@ -1,6 +1,7 @@
 import pygame as p
 import menu as m
 import map
+import ui as u
 
 p.init()
 p.display.set_caption('Ships')
@@ -16,9 +17,9 @@ map_generated = False
 def game(running):
     global rightclickactive, collide, number, map_generated, dt
     while running:
-        dt = clock.tick(60) / 1000
-        screen.fill((0,0,0,255))
+        dt = clock.tick(20) / 1000
         for event in p.event.get():
+            mouse = p.mouse.get_pressed(3)
             if event.type == p.QUIT:
                 running = False
             keys = p.key.get_pressed()
@@ -27,8 +28,15 @@ def game(running):
                     running = False
                 if keys[p.K_DELETE]:
                     map.deleteAll()
-            mouse = p.mouse.get_pressed(5)
             if event.type == p.MOUSEBUTTONDOWN:
+                if  mouse[2]:
+                    print("RIGHT")
+                    rightclickactive = True
+                    mouse_pos = p.mouse.get_pos()
+                    collide, number = m.rightClickMenu(screen, mouse_pos, 6, True)
+            if event.type == p.KEYDOWN or any(mouse):
+                print("AKTION")
+                screen.fill((0,0,0,255))
                 if  mouse[0]:
                     if not collide:
                         print("LEFT")
@@ -46,15 +54,11 @@ def game(running):
                         tile_pos_del = map.clickedtile(mouse_pos)
                         print(tile_pos_del)
                         map.deleteTile(tile_pos_del)
-                if  mouse[2]:
-                    print("RIGHT")
-                    rightclickactive = True
-                    mouse_pos = p.mouse.get_pos()
-                    collide, number = m.rightClickMenu(screen, mouse_pos, 6, True)
+                map.rendermap(screen)
+                map.rendertiles(screen)
         if not map_generated:
             map_generated = map.gamefield(9)
-        map.rendermap(screen)
-        map.rendertiles(screen)
+            map.rendermap(screen)
         if rightclickactive:
             collide, number = m.rightClickMenu(screen, mouse_pos, 6, False)
         p.display.flip()
