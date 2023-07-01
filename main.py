@@ -16,7 +16,7 @@ map_generated = False
 colors = [[(255,0,0,255),0, "Red"],[(0,255,0,255),0, "Green"],[(0,0,255,255),0, "Blue"],[(255,255,0,255),0, "Yellow"],[(255,0,255,255),0, "Pink"],[(255,255,255,255),0, "White"]]
 
 def game(running):
-    global rightclickactive, collide, number, map_generated, dt, colors
+    global rightclickactive, collide, number, map_generated, dt, colors, surface, screen
     while running:
         dt = clock.tick(20) / 1000
         for event in p.event.get():
@@ -30,7 +30,7 @@ def game(running):
                 if keys[p.K_DELETE]:
                     map.deleteAll()
                 if keys[p.K_F11]:
-                    u.togglefullscreen()
+                    screen = u.togglefullscreen(screen)
             if event.type == p.MOUSEBUTTONDOWN:
                 if  mouse[2]:
                     print("RIGHT")

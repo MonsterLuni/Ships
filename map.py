@@ -11,7 +11,7 @@ colors = [[(255,0,0,255),0, "Red"],[(0,255,0,255),0, "Green"],[(0,0,255,255),0, 
 def gamefield(amount):
     global id, lines
     lines = amount
-    while id <= amount:
+    while id < amount:
         start = p.Vector2(50,50 + (id * 50))
         end = p.Vector2(450,50 + (id * 50))
         linesx.append([
