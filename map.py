@@ -46,11 +46,14 @@ def closest(lst, K):
      idx = (np.abs(lst - K)).argmin()
      return lst[idx]
 
-def clickedtile(mouse_pos):
+def clickedtile(mouse_pos, screen):
     global lines, lst
     id = 0
     reseter = 1
-    pos = p.Vector2((mouse_pos[0]-50)/50,(mouse_pos[1]-50)/50)
+    mouse_pos_better = tuple([(mouse_pos[0] - ((screen.get_width() - 400) / 2)),mouse_pos[1]])
+    print(mouse_pos_better)
+    pos = p.Vector2((mouse_pos_better[0])/50,(mouse_pos_better[1]-50)/50)
+    #print(str(pos.x) + " : " + str(pos.y))
     lst = []
     while id < lines - 1:
         lst.append([id])
@@ -62,7 +65,6 @@ def clickedtile(mouse_pos):
         id += 0.5
     x = closest(lst,pos.x)
     y = closest(lst,pos.y)
-    #print("X: " + str(x) + " Y: " + str(y))
     return p.Vector2(x,y)
 
 def placeTile(tile_pos, number):
@@ -84,11 +86,10 @@ def placeTile(tile_pos, number):
     for tile in tiles:
         if rect == tile[0]:
             return
-    if number < 1:
+    if number < 1 or tile_pos.x > 8 or tile_pos.y > 8:
         return
     tiles.append([rect, color, idplace])
     idplace += 1
-    print("Tile Placed")
     return colors
 
 def deleteTile(tile_pos):
@@ -98,7 +99,6 @@ def deleteTile(tile_pos):
     for tile in tiles:
         if tile[0] == position:
             del tiles[idtile]
-            print("Tile erfolgreich gelöscht")
         idtile += 1
 
 def deleteAll():
@@ -108,7 +108,6 @@ def deleteAll():
 def rendertiles(screen):
     global tiles
     for tile in tiles:
-        print(tile[0][1])
         rect = p.Rect(((screen.get_width() - 400) / 2) + tile[0][0] - 50,tile[0][1],50,50)
         p.draw.rect(screen,tile[1],rect)
     return tiles

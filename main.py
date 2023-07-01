@@ -44,7 +44,7 @@ def game(running):
                         print("LEFT")
                         rightclickactive = False
                         mouse_pos = p.mouse.get_pos()
-                        tile_pos = map.clickedtile(mouse_pos)
+                        tile_pos = map.clickedtile(mouse_pos, screen)
                         print(tile_pos)
                         map.placeTile(tile_pos, number)
                     else:
@@ -53,7 +53,7 @@ def game(running):
                         print("MIDDLE")
                         rightclickactive = False
                         mouse_pos = p.mouse.get_pos()
-                        tile_pos_del = map.clickedtile(mouse_pos)
+                        tile_pos_del = map.clickedtile(mouse_pos, screen)
                         print(tile_pos_del)
                         map.deleteTile(tile_pos_del)
                 map.rendermap(screen)

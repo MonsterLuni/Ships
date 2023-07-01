@@ -20,7 +20,6 @@ def renderfont(screen, tiles, colors):
         id += 1
 
 def togglefullscreen(screen, amount):
-    print("FULLSCREEN TOGGLED")
     if p.display.is_fullscreen():
         p.display.toggle_fullscreen()
         screen = p.display.set_mode((500,500))
