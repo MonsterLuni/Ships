@@ -30,7 +30,7 @@ def game(running):
                 if keys[p.K_DELETE]:
                     map.deleteAll()
                 if keys[p.K_F11]:
-                    screen = u.togglefullscreen(screen)
+                    screen = u.togglefullscreen(screen,9)
             if event.type == p.MOUSEBUTTONDOWN:
                 if  mouse[2]:
                     print("RIGHT")
@@ -61,7 +61,7 @@ def game(running):
                 u.renderfont(screen, tiles,colors)
                 print("Screen Updated")
         if not map_generated:
-            map_generated = map.gamefield(9)
+            map_generated = map.gamefield(9, screen)
             map.rendermap(screen)
             tiles = map.rendertiles(screen)
             u.renderfont(screen, tiles, colors)

@@ -1,4 +1,5 @@
 import pygame as p
+import map as m
 
 p.font.init()
 font = p.font.SysFont(None, 25)
@@ -18,7 +19,7 @@ def renderfont(screen, tiles, colors):
             screen.blit(score, (25 + (id * 100),18))
         id += 1
 
-def togglefullscreen(screen):
+def togglefullscreen(screen, amount):
     print("FULLSCREEN TOGGLED")
     if p.display.is_fullscreen():
         p.display.toggle_fullscreen()
@@ -27,4 +28,5 @@ def togglefullscreen(screen):
         screens = p.display.get_desktop_sizes()
         screen = p.display.set_mode(screens[0])
         p.display.toggle_fullscreen()
+    m.gamefield(amount, screen)
     return screen

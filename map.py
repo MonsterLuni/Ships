@@ -8,19 +8,22 @@ tiles = []
 idplace = 0
 colors = [[(255,0,0,255),0, "Red"],[(0,255,0,255),0, "Green"],[(0,0,255,255),0, "Blue"],[(255,255,0,255),0, "Yellow"],[(255,0,255,255),0, "Pink"],[(255,255,255,255),0, "White"]]
 
-def gamefield(amount):
-    global id, lines
+def gamefield(amount, screen):
+    global id, lines, linesx, linesy
+    id = 0
+    linesx = []
+    linesy = []
     lines = amount
     while id < amount:
-        start = p.Vector2(50,50 + (id * 50))
-        end = p.Vector2(450,50 + (id * 50))
+        start = p.Vector2((screen.get_width() - 400) / 2,50 + (id * 50))
+        end = p.Vector2((screen.get_width() - (screen.get_width() - 400) / 2),50 + (id * 50))
         linesx.append([
             id,
             start,
             end
         ])
-        start = p.Vector2(50 + (id * 50),50)
-        end = p.Vector2(50 + (id * 50),450)
+        start = p.Vector2(((screen.get_width() - 400) / 2) + (id * 50),50)
+        end = p.Vector2(((screen.get_width() - 400) / 2) + (id * 50),450)
         linesy.append([
             id,
             start,
@@ -105,5 +108,7 @@ def deleteAll():
 def rendertiles(screen):
     global tiles
     for tile in tiles:
-        p.draw.rect(screen, tile[1], tile[0])
+        print(tile[0][1])
+        rect = p.Rect(((screen.get_width() - 400) / 2) + tile[0][0] - 50,tile[0][1],50,50)
+        p.draw.rect(screen,tile[1],rect)
     return tiles
