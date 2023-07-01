@@ -13,9 +13,10 @@ rightclickactive = False
 collide = False
 number = 0
 map_generated = False
+colors = [[(255,0,0,255),0, "Red"],[(0,255,0,255),0, "Green"],[(0,0,255,255),0, "Blue"],[(255,255,0,255),0, "Yellow"],[(255,0,255,255),0, "Pink"],[(255,255,255,255),0, "White"]]
 
 def game(running):
-    global rightclickactive, collide, number, map_generated, dt
+    global rightclickactive, collide, number, map_generated, dt, colors
     while running:
         dt = clock.tick(20) / 1000
         for event in p.event.get():
@@ -28,6 +29,8 @@ def game(running):
                     running = False
                 if keys[p.K_DELETE]:
                     map.deleteAll()
+                if keys[p.K_F11]:
+                    u.togglefullscreen()
             if event.type == p.MOUSEBUTTONDOWN:
                 if  mouse[2]:
                     print("RIGHT")
@@ -55,13 +58,13 @@ def game(running):
                         map.deleteTile(tile_pos_del)
                 map.rendermap(screen)
                 tiles = map.rendertiles(screen)
-                u.renderfont(screen, tiles)
+                u.renderfont(screen, tiles,colors)
                 print("Screen Updated")
         if not map_generated:
             map_generated = map.gamefield(9)
             map.rendermap(screen)
             tiles = map.rendertiles(screen)
-            u.renderfont(screen, tiles)
+            u.renderfont(screen, tiles, colors)
         if rightclickactive:
             collide, number = m.rightClickMenu(screen, mouse_pos, 6, False)
         p.display.flip()

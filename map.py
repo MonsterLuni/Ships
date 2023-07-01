@@ -6,6 +6,7 @@ linesx = []
 linesy = []
 tiles = []
 idplace = 0
+colors = [[(255,0,0,255),0, "Red"],[(0,255,0,255),0, "Green"],[(0,0,255,255),0, "Blue"],[(255,255,0,255),0, "Yellow"],[(255,0,255,255),0, "Pink"],[(255,255,255,255),0, "White"]]
 
 def gamefield(amount):
     global id, lines
@@ -62,20 +63,21 @@ def clickedtile(mouse_pos):
     return p.Vector2(x,y)
 
 def placeTile(tile_pos, number):
-    global tiles, idplace
+    global tiles, idplace, colors
     rect = p.Rect((tile_pos[0] * 50) +25, (tile_pos[1] * 50) +25,50,50)
-    color = (255,255,255,255)
     match number:
         case 1:
-            color = (255,0,0,255)
+            color = colors[0][0]
         case 2:
-            color = (0,255,0,255)
+            color = colors[1][0]
         case 3:
-            color = (0,0,255,255)
+            color = colors[2][0]
         case 4:
-            color = (255,255,0,255)
+            color = colors[3][0]
         case 5:
-            color = (255,0,255,255)
+            color = colors[4][0]
+        case 6:
+            color = colors[5][0]
     for tile in tiles:
         if rect == tile[0]:
             return
@@ -84,6 +86,7 @@ def placeTile(tile_pos, number):
     tiles.append([rect, color, idplace])
     idplace += 1
     print("Tile Placed")
+    return colors
 
 def deleteTile(tile_pos):
     global tiles
