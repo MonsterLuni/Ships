@@ -20,14 +20,14 @@ def gamefield(amount, screen):
         linesx.append([
             id,
             start,
-            end
+            end,
         ])
         start = p.Vector2(((screen.get_width() - 400) / 2) + (id * 50),50)
         end = p.Vector2(((screen.get_width() - 400) / 2) + (id * 50),450)
         linesy.append([
             id,
             start,
-            end
+            end,
         ])
         id += 1
     return True

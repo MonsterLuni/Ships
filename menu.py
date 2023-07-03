@@ -12,7 +12,7 @@ def rightClickMenu(screen, mouse_pos, amount, new):
         points = []
         id = 1
     while id <= amount:
-        menurect = p.Rect(mouse_pos[0], mouse_pos[1] + (id * 25), 50, 25)
+        menurect = p.Rect(mouse_pos[0], mouse_pos[1] + ((id - 1) * 25), 50, 25)
         match id:
             case 1:
                 color = colors[0][0]
